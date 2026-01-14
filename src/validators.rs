@@ -63,7 +63,6 @@ pub fn is_number(value: &dyn Any) -> bool {
     if value.is::<i32>() || value.is::<i64>() || value.is::<f64>() {
         return true;
     }
-
     false
 }
 
