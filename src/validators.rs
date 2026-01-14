@@ -5,13 +5,9 @@ use std::time::SystemTime;
 
 //1
 pub fn is_email(input: &str) -> bool {
-    // Regular expression for basic email validation
     let email_pattern = r"^[\w\.-]+@[\w\.-]+\.\w+$";
-
-    // Create regex object
     let regex = Regex::new(email_pattern).unwrap();
 
-    // Check if input matches the pattern
     if regex.is_match(input) {
         return true;
     }
@@ -41,7 +37,6 @@ pub fn is_phone_number(input: &str) -> bool {
 
 //4
 pub fn is_strong_password(input: &str) -> bool {
-
     let password_pattern =
         r"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$";
 
@@ -56,7 +51,6 @@ pub fn is_strong_password(input: &str) -> bool {
 
 //5
 pub fn is_empty<T>(value: Option<T>) -> bool {
-    // If value is None, it is empty
     if value.is_none() {
         return true;
     }
@@ -66,7 +60,6 @@ pub fn is_empty<T>(value: Option<T>) -> bool {
 
 //6
 pub fn is_number(value: &dyn Any) -> bool {
-    // Check common numeric types
     if value.is::<i32>() || value.is::<i64>() || value.is::<f64>() {
         return true;
     }
@@ -85,7 +78,6 @@ pub fn is_string(value: &dyn Any) -> bool {
 
 //8
 pub fn is_array<T>(value: &Vec<T>) -> bool {
-    // In Rust, arrays/lists are usually Vec
     if value.len() >= 0 {
         return true;
     }
@@ -95,7 +87,6 @@ pub fn is_array<T>(value: &Vec<T>) -> bool {
 
 //9
 pub fn is_object<K, V>(value: &HashMap<K, V>) -> bool {
-    // HashMap is closest to JS object
     if value.len() >= 0 {
         return true;
     }
@@ -108,7 +99,6 @@ pub fn is_function<F>(_value: &F) -> bool
 where
     F: Fn(),
 {
-    // If it compiles as Fn, it is a function
     true
 }
 
@@ -123,7 +113,6 @@ pub fn is_boolean(value: &dyn Any) -> bool {
 
 //12
 pub fn is_date(value: &dyn Any) -> bool {
-    // Using SystemTime as date representation
     if value.is::<SystemTime>() {
         return true;
     }
@@ -181,8 +170,6 @@ pub fn is_mac_address(input: &str) -> bool {
 //18
 pub fn is_credit_card(input: &str) -> bool {
     let mut digits: Vec<u32> = Vec::new();
-
-    // Extract digits only
     for ch in input.chars() {
         if ch.is_digit(10) {
             digits.push(ch.to_digit(10).unwrap());
